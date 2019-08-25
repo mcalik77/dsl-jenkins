@@ -8,6 +8,7 @@ pipeline{
                 echo Hello
                 ech Error
                 sudo yum install httpd -y
+                sudo yum insatll wget -y
                 ping -c 4 google.com
 
                 '''
@@ -15,8 +16,9 @@ pipeline{
         }
         stage("Download Terraform"){
             steps{
-                ws("/tmp"){
+                ws("tmp/"){
                     sh "pwd"
+                    sh "wget https://releases.hashicorp.com/terraform/0.12.7/terraform_0.12.7_linux_amd64.zip"
                 }
             }
 
