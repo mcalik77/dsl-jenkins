@@ -8,7 +8,7 @@ pipeline{
                 echo Hello
                 ech Error
                 sudo yum install httpd -y
-                sudo yum insatll wget -y
+                sudo yum install wget -y
                 ping -c 4 google.com
 
                 '''
