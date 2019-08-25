@@ -9,6 +9,7 @@ pipeline{
                 ech Error
                 sudo yum install httpd -y
                 sudo yum install wget -y
+                sudo yum insatll unzip -y
                 ping -c 4 google.com
 
                 '''
