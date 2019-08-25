@@ -71,7 +71,7 @@ pipeline{
     }
     post{
       success {
-          mail to:  mcalik@gmail.com, subject: “job”, body: “job completed
+          mail to:  mcalik@gmail.com, subject: “job”, body: “job completed"
   }
   }
 
