@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stages("Run Command"){
+        stage("Run Command"){
             steps{
                 sh "echo Hello"
             }
