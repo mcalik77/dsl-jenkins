@@ -58,5 +58,10 @@ pipeline{
                 }
             }
         }
+        stage("Pull Repo"){
+            steps{
+                git("https://github.com/mcalik77/packerdev.git")
+            }
+        }
     }
 }
