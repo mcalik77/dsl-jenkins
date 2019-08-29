@@ -1,5 +1,7 @@
+
 pipeline{
     agent any
+    parameters {string(defaultValue: "plan", description: "plan/apply'', name: 'USER_ACTION')}
     stages{
         stage("Run Command"){
             steps{
@@ -58,24 +60,38 @@ pipeline{
                 }
             }
         }
-        stage("Pull Repo"){
-            steps{
-                git("https://github.com/mcalik77/packerdev.git")
-            }
-        }
         stage("Build Image"){
             steps{
-                // sh "packer build updated/updated.json"
+                //sh "packer build updated/updated.json"
                 echo "Hello"
             }
         }
-        
         stage("Clone VPC Repo"){
             steps{
                 ws("terraform/"){
+                    git "https://github.com/mcalik77/infrastructure_april2019.git"
+                }
+            }
+        }
+        stage("Get module"){
+            steps{
+                ws("terraform/"){
                     sh "terraform get"
+                }
+            }
+        }
+        stage("initialize terraform"){
+            steps{
+                ws("terraform/"){
                     sh "terraform init"
-                    sh "terraform  plan -var-file=dev.tfvars"
+                }
+            }
+        }
+         stage("Build VPC "){
+            steps{
+                ws("terraform/"){
+                    sh "terraform  ${USER_ACTION} -var-file=dev.tfvars"
+                }
             }
         }
     }
