@@ -73,6 +73,7 @@ pipeline{
         stage("Clone VPC Repo"){
             steps{
                 ws("terraform/"){
+                    git "https://github.com/mcalik77/infrastructure_april2019.git"
                     sh "terraform init --var-file=dev.tfvars"
 
                 }
